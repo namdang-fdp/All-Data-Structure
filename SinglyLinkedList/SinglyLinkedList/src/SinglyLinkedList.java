@@ -10,6 +10,8 @@ public class SinglyLinkedList {
         singlyLinkedList.addFirst(20);
         singlyLinkedList.addFirst(30);
         singlyLinkedList.addLast(40);
+        singlyLinkedList.addAtIndex(25, 2);
+        singlyLinkedList.addAtIndex(50, 0);
         singlyLinkedList.traverse();
     }
 
@@ -41,6 +43,31 @@ public class SinglyLinkedList {
         }
         current.next = newNode;
     }
+
+    public void addAtIndex(int value, int index) {
+        if(index < 0) {
+            throw new IndexOutOfBoundsException("The position start at 0");
+        }
+        if(index == 0) {
+            addFirst(value);
+        }
+
+        Node current = head;
+        int currentIndex = 0;
+        while (current != null && currentIndex < index - 1) {
+            current = current.next;
+            currentIndex++;
+        }
+        if(current == null) {
+            throw new IndexOutOfBoundsException("Index out of range");
+        }
+        Node newNode = new Node(value);
+        newNode.next = current.next;
+        current.next = newNode;
+    }
+
+
+
 
 
 
